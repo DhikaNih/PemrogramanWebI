@@ -1,0 +1,161 @@
+/*Menghilangkan Pengaturan Default*/
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+/*Mengatur tampilan body*/
+body {
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    background-color: #f1f1f1;
+    color: #333;
+    line-height: 1.5;
+    text-align: justify;
+    padding-top: 50px;
+}
+
+/*Mengatur bagian header*/
+header {
+    background: linear-gradient(180deg, #007bff, #00c3ff);
+    color: white;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+/*Mengatur logo*/
+.logo {
+    display: flex;
+    justify-items: center;
+    justify-content: left;
+}
+
+/*Mengatur gambar logo*/
+.logo-img {
+    height: 60px;
+    width: 80px;
+    padding-left: 5px;
+}
+
+/*Mengatur teks logo*/
+.logo-text {
+    font-weight: bold;
+    font-size: 20px;
+    padding-top: 15px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+/*Hamburger Menu*/
+.ph ph-list {
+    color: white;
+    font-size: 24px;
+}
+
+.hamburger-menu {
+    display: none;
+}
+
+/*Mengatur menu navigasi*/
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    justify-items: center;
+}
+
+/*Mengatur untuk tampilan 
+warna dan menghilangkan garis bawah
+teks menu navigasi kanan*/
+.navbar ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+/*Mengatur untuk tampilan 
+tata letak teks menu navigasi kanan*/
+.navbar ul li {
+    list-style: none;
+    display: inline-block;
+    padding-top: 15px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+/*Mengatur teks navigasi ketika 
+ada cursor dan di klik*/
+.navbar ul li a:hover,
+.navbar ul li a.active {
+    font-weight: bold;
+}
+
+/*Mengatur kotak konten*/
+main {
+    max-width: 900px;
+    margin: 30px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+/*Mengatur gambar galeri*/
+.map,
+.gallery img {
+    height: 80%;
+    width: 80%;
+    border-radius: 10px;
+    display: block;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.gallery img {
+    width: 260px;
+    margin: 10px;
+    transition: transform 0.3s;
+}
+
+.gallery img:hover {
+    transform: scale(1.05);
+}
+
+/*Mengatur bagian footer*/
+footer {
+    text-align: center;
+    background: linear-gradient(360deg, #007bff, #00c3ff);
+    color: white;
+    padding: 10px;
+}
+
+/*Tampilan Responsif*/
+@media only screen and (max-width:768px) {
+    .navbar {
+        flex-wrap: wrap;
+    }
+
+    .navbar ul {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        padding: 10px;
+        width: 100%;
+    }
+
+    .navbar ul.hidden {
+        display: none;
+    }
+
+    .hamburger-menu {
+        display: flex;
+        align-items: center;
+        font-size: 24px;
+        padding: 15px;
+    }
+}

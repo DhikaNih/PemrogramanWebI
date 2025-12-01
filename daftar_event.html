@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pendaftaran Ekspedisi</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body onload="cekLogin()">
+
+    <div class="box">
+        <h2>Daftar Event Ekspedisi</h2>
+
+        <input id="robloxUser" type="text" placeholder="Username Roblox">
+        <input id="robloxID" type="text" placeholder="ID Roblox">
+
+        <select id="divisi">
+            <option value="Pendaki">Pendaki</option>
+            <option value="Navigator">Navigator</option>
+            <option value="Rescue">Rescue</option>
+        </select>
+
+        <button onclick="daftarEvent()">Kirim</button>
+
+        <p id="msg"></p>
+
+        <a href="dashboard.html">Kembali</a>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
