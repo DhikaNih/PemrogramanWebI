@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pendaftaran Ekspedisi</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="bodyDaftarEkspedisi" onload="cekLogin()">
+    <div class="daftarEkspedisiWrapper">
+        <div class="daftarEkspedisiContainer">
+            <form id="daftarEkspedisiForm">
+                <h1 class="daftarEkspedisiLabel">Daftar Event Ekspedisi</h1>
+                <div class="inputGroupDaftarEkspedisi">
+                    <input id="robloxUser" type="text" placeholder="Username Roblox">
+                </div>
+                <div class="inputGroupDaftarEkspedisi">
+                    <input id="robloxID" type="text" placeholder="ID Roblox">
+                </div>
+                <div class="inputGroupDaftarEkspedisi">
+                    <select class="daftarEkspedisiPeran" id="divisi">
+                        <option value="Pendaki">Pendaki</option>
+                        <option value="Navigator">Navigator</option>
+                        <option value="Rescue">Rescue</option>
+                    </select>
+                </div>
+                <button class="daftarEkspedisiButton" type="button" onclick="daftarEkspedisi()">Kirim</button>
+                <br><br>
+                <a class="daftarEkspedisiKembali" href="dashboard.html">Kembali</a><br>
+                <p id="daftarEkspedisiMessage"></p>
+            </form>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>

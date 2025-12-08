@@ -4,14 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Galeri - Ekspedisi Virtual Roblox</title>
+    <title>Kontak - Ekspedisi Virtual Roblox</title>
     <link rel="icon" type="image/png" href="LogoEkspedisi.png">
     <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="stylesheet" type="text/css"
         href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css" />
 </head>
 
-<body onload="loadPublicGallery()">
+<body>
     <header>
         <div class="navbar">
             <div class="logo">
@@ -22,31 +22,28 @@
                 <i class="ph ph-list"></i>
             </div>
             <ul id="menu" class="hidden">
-                <li><a href="index.html">Beranda</a></li>
-                <li><a href="tentang.html">Tentang</a></li>
-                <li><a href="tim.html">Tim</a></li>
-                <li><a href="galeri.html" class="active">Galeri</a></li>
-                <li><a href="kontak.html">Kontak</a></li>
-                <li><a class="loginButtonPage" href="login.html">Login</a></li>
+                <li><a href="index_login.html">Beranda</a></li>
+                <li><a href="tentang_login.html">Tentang</a></li>
+                <li><a href="tim_login.html">Tim</a></li>
+                <li><a href="galeri_login.html">Galeri</a></li>
+                <li><a href="kontak_login.html" class="active">Kontak</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+                <li><button class="logoutButton" onclick="logout()">Logout</button></li>
             </ul>
         </div>
     </header>
 
     <main>
         <section>
-            <h2>Galeri Petualangan</h2>
-            <div class="gallery">
-                <img src="Event1.png" alt="Gunung Es Roblox">
-                <img src="Event2.png" alt="Harta Karun Roblox">
-                <img src="Event3.png" alt="Hutan Robloxia">
-            </div>
+            <h2>Hubungi Kami</h2>
+            <p>Email: <a href="mailto:ekspedisi.roblox@gmail.com">ekspedisi.roblox@gmail.com</a></p>
+            <p>Ikuti kami di Roblox: <a href="https://www.roblox.com" target="_blank">Roblox.com</a></p>
         </section>
     </main>
 
     <footer>
         <p>© 2025 Ekspedisi Virtual Roblox</p>
     </footer>
-
     <script src="script.js"></script>
 </body>
 

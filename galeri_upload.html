@@ -8,13 +8,13 @@
     <link rel="stylesheet" href="style.css">
 </head>
 
-<body onload="cekLogin(); loadMyGallery();">
+<body class="bodyGaleriUpload" onload="cekLogin(); loadMyGallery();">
 
     <div class="box">
         <h2>Upload Foto</h2>
 
         <input type="file" id="foto" accept="image/*">
-        <button onclick="uploadFoto()">Upload</button>
+        <button type="button" onclick="uploadFoto()">Upload</button>
 
         <div id="gallery"></div>
 

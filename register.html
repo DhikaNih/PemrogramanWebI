@@ -4,21 +4,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register Akun</title>
+    <title>Daftar Akun</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <div class="box">
-        <h2>Register</h2>
-        <input id="regUser" type="text" placeholder="Username Baru">
-        <input id="regPass" type="password" placeholder="Password Baru">
-        <button onclick="register()">Daftar</button>
-        <p id="msg"></p>
-    </div>
+    <body class="bodyRegister">
+        <div class="registerWrapper">
+            <div class="registerContainer">
+                <form id="registerForm">
+                    <h1 class="registerLabel">Daftar Akun</h1>
+                    <div class="inputGroupRegister">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" required>
+                    </div>
+                    <div class="inputGroupRegister">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" required>
+                    </div>
+                    <button class="registerButton" type="button" onclick="register()">Register</button>
+                    <p id="registerMessage"></p>
+                </form>
+            </div>
+        </div>
 
-    <script src="script.js"></script>
-</body>
+        <script src="script.js"></script>
+    </body>
 
 </html>

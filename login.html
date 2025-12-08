@@ -4,19 +4,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Ekspedisi</title>
+    <title>Masuk Akun</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
-
-    <div class="box">
-        <h2>Login</h2>
-        <input id="loginUser" type="text" placeholder="Username">
-        <input id="loginPass" type="password" placeholder="Password">
-        <button onclick="login()">Login</button>
-        <p>Belum punya akun? <a href="register.html">Daftar</a></p>
-        <p id="msg"></p>
+<body class="bodyLogin">
+    <div class="loginWrapper">
+        <div class="loginContainer">
+            <form id="loginForm">
+                <h1 class="loginLabel">Masuk Akun</h1>
+                <div class="inputGroupLogin">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" required>
+                </div>
+                <div class="inputGroupLogin">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" required>
+                </div>
+                <button class="loginButton" type="button" onclick="login()">Masuk</button>
+                <p class="registerMessage">Belum punya akun?
+                    <a href="register.html">Daftar Sekarang</a>
+                </p>
+                <p id="message"></p>
+            </form>
+        </div>
     </div>
 
     <script src="script.js"></script>
