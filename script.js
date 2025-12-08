@@ -117,7 +117,7 @@ function logout() {
     // localStorage.removeItem("password");
 
     alert("Anda telah logout!");
-    window.location.href = "login.html"; // arahkan ke halaman login
+    window.location.href = "index.html"; // arahkan ke halaman login
 }
 
 /*Daftar Ekspedisi*/
