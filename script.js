@@ -143,37 +143,45 @@ function loadStatusEkspedisi() {
 
 /*GALERI PRIBADI*/
 function loadMyGallery() {
-    const gallery = document.getElementById("gallery");
-    if (!gallery) return;
+    const galleryDiv = document.getElementById("gallery");
+    galleryDiv.innerHTML = "";
 
-    gallery.innerHTML = "";
-    const user = localStorage.getItem("username");
-    const photos = JSON.parse(localStorage.getItem("foto_" + user)) || [];
+    const username = localStorage.getItem("username");
+    const dataFoto = JSON.parse(localStorage.getItem("foto_" + username)) || [];
 
-    if (photos.length === 0) {
-        gallery.innerHTML = "<p>Belum ada foto.<br> Silahkan daftar dan masuk akun untuk menambahkan foto.</p>";
+    if (dataFoto.length === 0) {
+        galleryDiv.innerHTML =
+            "<p>Belum ada foto yang diupload.<br>Silahkan upload foto terlebih dahulu.</p>";
         return;
     }
 
-    photos.forEach((item, index) => {
-        const box = document.createElement("div");
-        box.className = "myGalleryItem";
+    dataFoto.forEach((item, index) => {
+        const wrapper = document.createElement("div");
+        wrapper.classList.add("myGalleryItem");
 
         const img = document.createElement("img");
         img.src = item.img;
+        img.classList.add("uploadedFoto");
         img.onclick = () => openFotoModal(item.img, item.desc);
 
         const desc = document.createElement("p");
+        desc.classList.add("fotoDesc");
         desc.textContent = item.desc;
 
-        const btn = document.createElement("button");
-        btn.textContent = "Hapus";
-        btn.onclick = () => hapusFoto(index);
+        const btnHapus = document.createElement("button");
+        btnHapus.textContent = "Hapus";
+        btnHapus.classList.add("btnHapusFoto");
+        btnHapus.onclick = () => hapusFoto(index);
 
-        box.append(img, desc, btn);
-        gallery.appendChild(box);
+        wrapper.appendChild(img);
+        wrapper.appendChild(desc);
+        wrapper.appendChild(btnHapus);
+
+        galleryDiv.appendChild(wrapper);
     });
 }
+
+
 
 function uploadFoto() {
     const file = document.getElementById("foto").files[0];
@@ -194,14 +202,23 @@ function uploadFoto() {
 }
 
 function hapusFoto(index) {
-    const user = localStorage.getItem("username");
-    const key = "foto_" + user;
-    const data = JSON.parse(localStorage.getItem(key)) || [];
-    if (!confirm("Hapus foto?")) return;
-    data.splice(index, 1);
-    localStorage.setItem(key, JSON.stringify(data));
+    const username = localStorage.getItem("username");
+    const key = "foto_" + username;
+
+    let userPhotos = JSON.parse(localStorage.getItem(key)) || [];
+
+    if (!confirm("Yakin ingin menghapus foto ini?")) return;
+
+    // Hapus foto berdasarkan index
+    userPhotos.splice(index, 1);
+
+    // Simpan kembali
+    localStorage.setItem(key, JSON.stringify(userPhotos));
+
+    // Refresh galeri
     loadMyGallery();
 }
+
 
 /*GALERI PUBLIK*/
 function loadPublicGallery() {
