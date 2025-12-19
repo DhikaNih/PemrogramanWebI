@@ -136,6 +136,18 @@ footer {
     padding: 10px;
 }
 
+/*Tampilan tentang.html*/
+.videoContainer {
+    padding: 10px;
+    align-items: center;
+    align-content: center;
+    text-align: center;
+}
+
+.videoContainer video {
+    width: 420px;
+    height: 240px;
+}
 
 /* TAMPILAN tim.html*/
 .team-list {
@@ -247,7 +259,7 @@ footer {
     background-attachment: fixed;
 }
 
-.registerWrapper {
+.registerKembaliWrapper {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -305,6 +317,19 @@ footer {
     background-color: #0056b3;
 }
 
+.registerKembaliWrapper {
+    display: flex;
+    align-content: center;
+}
+
+.registerKembali {
+    display: inline-block;
+    margin-top: 20px;
+    color: #2a75ff;
+    text-decoration: none;
+    font-weight: 600;
+}
+
 #message {
     color: red;
     text-align: center;
@@ -334,10 +359,23 @@ footer {
 }
 
 .statusEkspedisiWrapper {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 40px;
+    width: 90%;
+    max-width: 450px;
+    margin: 40px auto;
+    padding: 25px;
+    background: #ffffff;
+    border-radius: 18px;
+    box-shadow: 0 5px 14px rgba(0, 0, 0, 0.18);
+    text-align: center;
+    animation: fadeIn 0.4s ease;
+}
+
+.statusEkspedisiKembali {
+    display: inline-block;
+    margin-top: 20px;
+    color: #2a75ff;
+    text-decoration: none;
+    font-weight: 600;
 }
 
 #statusContent {
@@ -353,6 +391,7 @@ footer {
 #statusContent p {
     margin: 6px 0;
 }
+
 
 /*Tampilan daftar_ekspedisi.html*/
 .bodyDaftarEkspedisi {
@@ -486,7 +525,8 @@ footer {
     font-weight: bold;
     background-color: #1900ff;
     width: 100%;
-    padding: 0.4rem;
+    padding: 5px 5px;
+    margin-top: 15px;
     color: white;
     border: none;
     border-radius: 4px;
@@ -503,8 +543,79 @@ footer {
     background-attachment: fixed;
 }
 
-/*Wrapper Box Upload*/
-.box {
+/*MODAL FOTO*/
+.fotoModal {
+    position: fixed;
+    /* PENTING */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    background: rgba(0, 0, 0, 0.8);
+
+    display: none;
+    /*default disembunyikan*/
+    justify-content: center;
+    align-items: center;
+
+    z-index: 9999;
+    /* Biar di atas semua */
+}
+
+/*gambar di modal*/
+.fotoModal img {
+    max-width: 90%;
+    max-height: 80%;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
+}
+
+/* deskripsi */
+.fotoModal p {
+    color: white;
+    margin-top: 12px;
+    text-align: center;
+    font-size: 14px;
+    max-width: 90%;
+}
+
+/* tombol close */
+.closeModal {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 35px;
+    color: white;
+    cursor: pointer;
+}
+
+/* galeri biar rapi */
+.gallery,
+.myGalleryItem,
+.galleryItem {
+    display: grid;
+    gap: 10px;
+}
+
+/* foto galeri */
+.gallery img,
+.myGalleryItem img,
+.galleryItem img {
+    width: 100%;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.gallery img:hover,
+.myGalleryItem img:hover,
+.galleryItem img:hover {
+    transform: scale(1.03);
+}
+
+/*Galeri Upload*/
+.galeriUploadWrapper {
     width: 90%;
     max-width: 450px;
     margin: 40px auto;
@@ -516,11 +627,92 @@ footer {
     animation: fadeIn 0.4s ease;
 }
 
-.box h2 {
+.galeriUploadWrapper h2 {
     font-size: 26px;
     font-weight: 700;
     margin-bottom: 20px;
     color: #2d3e50;
+}
+
+.uploadButton {
+    margin-top: 6px;
+    padding: 6px 12px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+/*Tampilan Deskrisi Singkat*/
+textarea {
+    width: 100%;
+    min-height: 60px;
+    margin: 10px 0;
+    padding: 8px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    resize: none;
+}
+
+.fotoDesc {
+    font-size: 14px;
+    color: #444;
+    margin: 6px 0;
+}
+
+.galleryItem {
+    background: #fff;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 10px;
+    width: 220px;
+}
+
+.galleryItem p {
+    background: #fff;
+    border-radius: 10px;
+    margin-left: 15px;
+    width: 220px;
+}
+
+
+/*Tampilan Tombol Hapus Foto*/
+.myGalleryItem {
+    position: relative;
+    display: inline-block;
+    margin: 10px;
+}
+
+.uploadedFoto {
+    width: 180px;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.btnHapusFoto {
+    margin-top: 6px;
+    padding: 6px 12px;
+    background: #ef4444;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.btnHapusFoto:hover {
+    background: #dc2626;
+}
+
+.galeriUploadKembali {
+    display: inline-block;
+    margin-top: 20px;
+    color: #2a75ff;
+    text-decoration: none;
+    font-weight: 600;
 }
 
 /*Input File*/
@@ -604,6 +796,12 @@ footer {
     font-style: italic;
 }
 
+/*Tampilan kontak.html dan kontak_login.html*/
+.kontakWrapper {
+    padding: 50px;
+    text-align: center;
+}
+
 /*Tampilan Responsif*/
 @media only screen and (max-width:768px) {
     .navbar {
@@ -635,6 +833,18 @@ footer {
         padding-top: 18px;
         padding-left: 5px;
         padding-right: 5px;
+    }
+
+    .videoContainer {
+        padding: 5px;
+        margin-top: -20px;
+        text-align: center;
+
+    }
+
+    .videoContainer video {
+        width: 270px;
+        height: 240px;
     }
 
 }

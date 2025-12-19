@@ -11,15 +11,23 @@
 
 <body class="bodyGaleriUpload" onload="cekLogin(); loadMyGallery();">
 
-    <div class="box">
+    <div class="galeriUploadWrapper">
         <h2>Upload Foto</h2>
 
+        <!-- Input Foto -->
         <input type="file" id="foto" accept="image/*">
-        <button type="button" onclick="uploadFoto()">Upload</button>
 
+        <!-- Input Deskripsi -->
+        <textarea id="deskripsiFoto"
+            placeholder="Tulis deskripsi singkat foto (contoh: Pendakian menuju puncak es Roblox)"></textarea>
+
+        <!-- Tombol Upload -->
+        <button class="uploadButton" type="button" onclick="uploadFoto()">Upload</button>
+
+        <!-- Galeri Pribadi -->
         <div id="gallery"></div>
 
-        <a href="dashboard.html">Kembali</a>
+        <a class="galeriUploadKembali" href="dashboard.html">Kembali</a>
     </div>
 
     <script src="script.js"></script>

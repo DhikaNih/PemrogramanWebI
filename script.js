@@ -1,298 +1,252 @@
-/*Buka Tutup Navbar*/
-const hamMenu = document.getElementById("hamburger-menu");
-const menu = document.getElementById("menu");
+/*NAVBAR*/
+document.addEventListener("DOMContentLoaded", () => {
+    const hamMenu = document.getElementById("hamburger-menu");
+    const menu = document.getElementById("menu");
 
-hamMenu.addEventListener("click", function () {
-    menu.classList.toggle("hidden");
+    if (hamMenu && menu) {
+        hamMenu.addEventListener("click", () => {
+            menu.classList.toggle("hidden");
+        });
+    }
 });
 
-
-/*Login*/
+/*LOGIN*/
 function login() {
     const usernameInput = document.getElementById("username").value.trim();
     const passwordInput = document.getElementById("password").value.trim();
     const message = document.getElementById("message");
 
-    if (usernameInput === "" || passwordInput === "") {
+    if (!usernameInput || !passwordInput) {
         message.textContent = "Semua kolom harus diisi!";
         message.style.color = "red";
         return;
     }
 
-    // Ambil daftar user
-    let users = JSON.parse(localStorage.getItem("users")) || [];
-
-    // Cari user sesuai input
+    const users = JSON.parse(localStorage.getItem("users")) || [];
     const foundUser = users.find(
         u => u.username === usernameInput && u.password === passwordInput
     );
 
     if (foundUser) {
-        message.textContent = "Login berhasil! Mengarahkan...";
+        message.textContent = "Login berhasil!";
         message.style.color = "green";
 
-        // Set login status
         localStorage.setItem("isLoggedIn", "true");
         localStorage.setItem("username", foundUser.username);
 
         setTimeout(() => {
             window.location.href = "index_login.html";
-        }, 1000);
+        }, 800);
     } else {
         message.textContent = "Username atau password salah!";
         message.style.color = "red";
     }
 }
 
-
-// Cek Login (Anti Bypass)
-function cekLogin() {
-    const isLoggedIn = localStorage.getItem("isLoggedIn");
-    const username = localStorage.getItem("username");
-
-    if (isLoggedIn !== "true") {
-        alert("Silakan login terlebih dahulu!");
-        window.location.href = "index_login.html";
-    }
-
-    if (!username) {
-        alert("Silakan login terlebih dahulu!");
-        window.location.href = "login.html";
-        return;
-    }
-
-    // Tampilkan nama user di dashboard
-    const namaUserElem = document.getElementById("namaUser");
-    if (namaUserElem) {
-        namaUserElem.textContent = username;
-    }
-}
-
-/*Register*/
+/*REGISTER*/
 function register() {
     const username = document.getElementById("username").value.trim();
     const password = document.getElementById("password").value.trim();
     const message = document.getElementById("registerMessage");
 
-    if (username === "" || password === "") {
+    if (!username || !password) {
         message.textContent = "Semua kolom harus diisi!";
         message.style.color = "red";
         return;
     }
 
-    // Ambil list user dari localStorage
     let users = JSON.parse(localStorage.getItem("users")) || [];
-
-    // Cek apakah username sudah ada
-    const existingUser = users.find(u => u.username === username);
-
-    if (existingUser) {
+    if (users.find(u => u.username === username)) {
         message.textContent = "Username sudah terdaftar!";
         message.style.color = "red";
         return;
     }
 
-    // Tambahkan user baru ke array
-    users.push({ username: username, password: password });
-
-    // Simpan kembali ke localStorage
+    users.push({ username, password });
     localStorage.setItem("users", JSON.stringify(users));
 
-    message.textContent = "Pendaftaran berhasil! Silakan login.";
+    message.textContent = "Pendaftaran berhasil!";
     message.style.color = "green";
 
     setTimeout(() => {
         window.location.href = "login.html";
-    }, 1200);
+    }, 1000);
 }
 
+/*CEK LOGIN*/
+function cekLogin() {
+    if (localStorage.getItem("isLoggedIn") !== "true") {
+        alert("Silakan login terlebih dahulu!");
+        window.location.href = "login.html";
+        return;
+    }
 
-/*Logout*/
+    const namaUser = document.getElementById("namaUser");
+    if (namaUser) {
+        namaUser.textContent = localStorage.getItem("username");
+    }
+}
+
+/*LOGOUT*/
 function logout() {
-    // Hapus status login
     localStorage.removeItem("isLoggedIn");
-
-    // (OPSIONAL) jika mau hapus username & password simpanan
-    // localStorage.removeItem("username");
-    // localStorage.removeItem("password");
-
-    alert("Anda telah logout!");
-    window.location.href = "index.html"; // arahkan ke halaman login
+    localStorage.removeItem("username");
+    alert("Logout berhasil!");
+    window.location.href = "index.html";
 }
 
-/*Daftar Ekspedisi*/
-// Fungsi Daftar Ekspedisi
+/*AFTAR EKSPEDISI*/
 function daftarEkspedisi() {
     const robloxUser = document.getElementById("robloxUser").value.trim();
     const robloxID = document.getElementById("robloxID").value.trim();
     const divisi = document.getElementById("divisi").value;
     const message = document.getElementById("daftarEkspedisiMessage");
 
-    if (robloxUser === "" || robloxID === "") {
+    if (!robloxUser || !robloxID) {
         message.textContent = "Semua kolom harus diisi!";
         message.style.color = "red";
         return;
     }
 
-    // Ambil username login sekarang
     const currentUser = localStorage.getItem("username");
-    if (!currentUser) {
-        alert("Harus login dulu!");
-        return;
-    }
-
-    // Simpan data pendaftaran spesifik untuk user tersebut
-    const daftarData = {
-        robloxUser: robloxUser,
-        robloxID: robloxID,
-        divisi: divisi
-    };
-
-    // simpan data di localStorage dengan nama ekspedisi_username
-    localStorage.setItem("ekspedisi_" + currentUser, JSON.stringify(daftarData));
+    localStorage.setItem(
+        "ekspedisi_" + currentUser,
+        JSON.stringify({ robloxUser, robloxID, divisi })
+    );
 
     message.textContent = "Pendaftaran berhasil!";
     message.style.color = "green";
 
     setTimeout(() => {
         window.location.href = "dashboard.html";
-    }, 1200);
+    }, 800);
 }
 
-/*Memuat Status Ekspedisi*/
+/*STATUS EKSPEDISI*/
 function loadStatusEkspedisi() {
     const currentUser = localStorage.getItem("username");
     const statusDiv = document.getElementById("statusContent");
 
     const data = localStorage.getItem("ekspedisi_" + currentUser);
-
     if (!data) {
         statusDiv.innerHTML = "<p>Anda belum mendaftar ekspedisi.</p>";
         return;
     }
 
-    const ekspedisi = JSON.parse(data);
-
+    const e = JSON.parse(data);
     statusDiv.innerHTML = `
-        <p><strong>Username Roblox:</strong> ${ekspedisi.robloxUser}</p>
-        <p><strong>ID Roblox:</strong> ${ekspedisi.robloxID}</p>
-        <p><strong>Divisi / Peran:</strong> ${ekspedisi.divisi}</p>
+        <p><b>Username Roblox:</b> ${e.robloxUser}</p>
+        <p><b>ID Roblox:</b> ${e.robloxID}</p>
+        <p><b>Divisi:</b> ${e.divisi}</p>
     `;
 }
 
-/*Galeri Upload*/
-// Load Galeri Foto User Login
+/*GALERI PRIBADI*/
 function loadMyGallery() {
-    const galleryDiv = document.getElementById("gallery");
-    galleryDiv.innerHTML = "";
+    const gallery = document.getElementById("gallery");
+    if (!gallery) return;
 
-    const username = localStorage.getItem("username");
+    gallery.innerHTML = "";
+    const user = localStorage.getItem("username");
+    const photos = JSON.parse(localStorage.getItem("foto_" + user)) || [];
 
-    // Ambil data foto milik user
-    const dataFoto = JSON.parse(localStorage.getItem("foto_" + username)) || [];
-
-    if (dataFoto.length === 0) {
-        galleryDiv.innerHTML = "<p>Belum ada foto yang diupload</p>";
+    if (photos.length === 0) {
+        gallery.innerHTML = "<p>Belum ada foto.</p>";
         return;
     }
 
-    // Tampilkan foto
-    dataFoto.forEach(src => {
+    photos.forEach((item, index) => {
+        const box = document.createElement("div");
+        box.className = "myGalleryItem";
+
         const img = document.createElement("img");
-        img.src = src;
-        img.classList.add("uploadedFoto");
-        galleryDiv.appendChild(img);
+        img.src = item.img;
+        img.onclick = () => openFotoModal(item.img, item.desc);
+
+        const desc = document.createElement("p");
+        desc.textContent = item.desc;
+
+        const btn = document.createElement("button");
+        btn.textContent = "Hapus";
+        btn.onclick = () => hapusFoto(index);
+
+        box.append(img, desc, btn);
+        gallery.appendChild(box);
     });
 }
 
-// Upload Foto
 function uploadFoto() {
-    const fileInput = document.getElementById("foto");
-    const file = fileInput.files[0];
-
-    if (!file) {
-        alert("Pilih foto terlebih dahulu!");
-        return;
-    }
+    const file = document.getElementById("foto").files[0];
+    const desc = document.getElementById("deskripsiFoto").value.trim();
+    if (!file) return alert("Pilih foto!");
 
     const reader = new FileReader();
+    reader.onload = e => {
+        const user = localStorage.getItem("username");
+        const key = "foto_" + user;
+        const data = JSON.parse(localStorage.getItem(key)) || [];
 
-    reader.onload = function (event) {
-        const fotoBase64 = event.target.result;
-
-        const username = localStorage.getItem("username");
-        const key = "foto_" + username;
-
-        // Ambil galeri lama user
-        let userPhotos = JSON.parse(localStorage.getItem(key)) || [];
-
-        // Tambahkan foto ke array
-        userPhotos.push(fotoBase64);
-
-        // Simpan kembali ke localStorage
-        localStorage.setItem(key, JSON.stringify(userPhotos));
-
-        // Refresh galeri
+        data.push({ img: e.target.result, desc: desc || "Tanpa deskripsi" });
+        localStorage.setItem(key, JSON.stringify(data));
         loadMyGallery();
-
-        alert("Foto berhasil diupload!");
-        fileInput.value = ""; // reset input file
     };
-
-    // Convert ke Base64
     reader.readAsDataURL(file);
 }
 
+function hapusFoto(index) {
+    const user = localStorage.getItem("username");
+    const key = "foto_" + user;
+    const data = JSON.parse(localStorage.getItem(key)) || [];
+    if (!confirm("Hapus foto?")) return;
+    data.splice(index, 1);
+    localStorage.setItem(key, JSON.stringify(data));
+    loadMyGallery();
+}
 
-// Menampilkan Semua Foto Di Galeri
+/*GALERI PUBLIK*/
 function loadPublicGallery() {
-    const galleryContainer = document.querySelector(".gallery");
+    const gallery = document.querySelector(".gallery");
+    if (!gallery) return;
 
-    if (!galleryContainer) return; // kalau bukan di galeri.html, hentikan
+    gallery.innerHTML = "";
+    let ada = false;
 
-    galleryContainer.innerHTML = "";
-
-    let keys = Object.keys(localStorage);
-
-    let totalFoto = 0;
-
-    keys.forEach(key => {
-
-        // Hanya ambil data yang prefix-nya "foto_"
+    Object.keys(localStorage).forEach(key => {
         if (key.startsWith("foto_")) {
+            const user = key.replace("foto_", "");
+            const photos = JSON.parse(localStorage.getItem(key)) || [];
 
-            const username = key.replace("foto_", "");
-            const fotoArray = JSON.parse(localStorage.getItem(key)) || [];
-
-            fotoArray.forEach(src => {
-                totalFoto++;
-
-                // membuat elemen card foto
+            photos.forEach(item => {
+                ada = true;
                 const box = document.createElement("div");
-                box.classList.add("galleryItem");
+                box.className = "galleryItem";
 
                 const img = document.createElement("img");
-                img.src = src;
+                img.src = item.img;
+                img.onclick = () => openFotoModal(item.img, item.desc);
 
-                const userTag = document.createElement("p");
-                userTag.textContent = "Diunggah oleh: " + username;
-                userTag.classList.add("uploaderName");
+                const desc = document.createElement("p");
+                desc.textContent = item.desc;
 
-                box.appendChild(img);
-                box.appendChild(userTag);
+                const name = document.createElement("p");
+                name.textContent = "Diunggah oleh: " + user;
 
-                galleryContainer.appendChild(box);
+                box.append(img, desc, name);
+                gallery.appendChild(box);
             });
         }
-
     });
 
-    // Jika belum ada foto sama sekali
-    if (totalFoto === 0) {
-        galleryContainer.innerHTML = "<p class='noFoto'>Belum ada foto dari para pemain.</p>";
-    }
+    if (!ada) gallery.innerHTML = "<p>Belum ada foto.</p>";
+}
 
-    document.addEventListener("DOMContentLoaded", function () {
-        loadPublicGallery();
-    });
+/*MODAL FOTO*/
+function openFotoModal(src, desc) {
+    document.getElementById("fotoModal").style.display = "flex";
+    document.getElementById("modalImg").src = src;
+    document.getElementById("modalDesc").textContent = desc;
+}
+
+function closeFotoModal() {
+    document.getElementById("fotoModal").style.display = "none";
 }
