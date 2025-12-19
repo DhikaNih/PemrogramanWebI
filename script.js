@@ -151,7 +151,7 @@ function loadMyGallery() {
     const photos = JSON.parse(localStorage.getItem("foto_" + user)) || [];
 
     if (photos.length === 0) {
-        gallery.innerHTML = "<p>Belum ada foto.</p>";
+        gallery.innerHTML = "<p>Belum ada foto.<br> Silahkan daftar dan masuk akun untuk menambahkan foto.</p>";
         return;
     }
 
@@ -237,7 +237,7 @@ function loadPublicGallery() {
         }
     });
 
-    if (!ada) gallery.innerHTML = "<p>Belum ada foto.</p>";
+    if (!ada) gallery.innerHTML = "<p>Belum ada foto.<br> Silahkan daftar dan masuk akun untuk menambahkan foto.</p>";
 }
 
 /*MODAL FOTO*/
